@@ -23,12 +23,12 @@ void main() {
 
 	double arr_MB[MAX_SIZE], arr_COST[MAX_SIZE];
 
-	puts("\nВведите ёмкость диска (в МБ) и его цену через пробел:");
+	puts("Введите ёмкость диска (в МБ) и его цену через пробел:");
 
 	for (int i = 0; i < size; i++)
 	{
 		printf("Диск#%d: ", i + 1);
-		while (scanf("%lf %lf", &arr_MB[i], &arr_COST[i]) != 2 || MB < 1 || COST < 1)
+		while (scanf("%lf %lf", &arr_MB[i], &arr_COST[i]) != 2 || arr_MB[i] < 1 || arr_COST[i] < 1)
 		{
 			while (getchar() != '\n');
 			puts("Вы ввели что-то не так, повторите ввод:");
@@ -38,11 +38,26 @@ void main() {
 
 	puts("Диски, которые дороже значения C:");
 
+	double min = arr_COST[0];
+
 	for (int i = 0; i < size; i++)
 	{
+		if (arr_COST[i] < min)
+		{
+			min = arr_COST[i];
+		}
+
 		if (arr_COST[i] > C)
 		{
-			printf("Диск#%d: %lf Мб %lf Руб.\n", i + 1, arr_MB[i], arr_COST[i]);
+			printf("Диск#%d: %.1lf Мб %.1lf Руб.\n", i + 1, arr_MB[i], arr_COST[i]);
+		}
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		if (arr_COST[i] == min)
+		{
+			printf("Минимальным по цене диском будет диск #%d, который рассчитан на %.1lf Mb\n", i + 1, arr_MB[i]);
 		}
 	}
 
