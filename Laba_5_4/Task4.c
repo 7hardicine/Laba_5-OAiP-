@@ -63,6 +63,3 @@ void main() {
 
 	system("pause");
 }
-
-
-//Недоделок
